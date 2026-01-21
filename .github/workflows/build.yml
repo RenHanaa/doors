@@ -11,14 +11,33 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      # JVM 17 чтобы Gradle вообще запустился
+      - name: Setup Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+          cache: gradle
+
+      # Устанавливаем JDK 8, чтобы toolchain мог компилировать под 1.12.2
       - name: Setup Java 8
         uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: "8"
 
+      # Фиксируем gradle версии (не 9.x)
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
+        with:
+          gradle-version: "8.7"
 
       - name: Build
-        run: gradle build
+        run: gradle build --no-daemon
+
+      # Чтобы jar можно было скачать кнопкой
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: liminaldoors-jar
+          path: build/libs/*.jar
