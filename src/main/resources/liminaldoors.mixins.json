@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "package": "dev.fox.liminaldoors.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "MixinBlockDoor",
+    "MixinPlayerInteractionManager"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

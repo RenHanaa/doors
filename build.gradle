@@ -1,0 +1,37 @@
+plugins {
+    id "fabric-loom" version "${loom_version}"
+}
+
+repositories {
+    mavenCentral()
+    maven { url "https://maven.fabricmc.net/" }
+    maven { url "https://repo.legacyfabric.net/repository/legacyfabric/" }
+}
+
+group = "dev.fox"
+version = "0.1.0"
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(8)
+    }
+}
+
+dependencies {
+    minecraft "com.mojang:minecraft:${minecraft_version}"
+    mappings "net.legacyfabric:yarn:${minecraft_version}+build.${yarn_build}:v2"
+    modImplementation "net.fabricmc:fabric-loader:${loader_version}"
+
+    // Legacy Fabric API
+    modImplementation "net.legacyfabric.legacy-fabric-api:legacy-fabric-api:${fabric_version}"
+}
+
+loom {
+    // Нормально для 1.12.2, чтобы миксины работали без сюрпризов.
+    // Если loom заругается, уберем.
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = "UTF-8"
+    options.release = 8
+}

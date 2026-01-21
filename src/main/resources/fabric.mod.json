@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "id": "liminaldoors",
+  "version": "0.1.0",
+  "name": "Liminal Doors",
+  "description": "1% chance doors send you into a shifting liminal pocket.",
+  "authors": ["Fox"],
+  "license": "MIT",
+  "environment": "*",
+  "entrypoints": {
+    "main": ["dev.fox.liminaldoors.LiminalDoors"]
+  },
+  "mixins": [
+    "liminaldoors.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.18.0"
+  }
+}
