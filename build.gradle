@@ -14,7 +14,8 @@ version = "0.1.0"
 java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(8)
-        vendor = JvmVendorSpec.ADOPTIUM
+        // Removed vendor specification so gradle picks an available JDK
+        // vendor = JvmVendorSpec.ADOPTIUM
     }
 }
 
@@ -28,8 +29,8 @@ dependencies {
 }
 
 loom {
-    // Нормально для 1.12.2, чтобы миксины работали без сюрпризов.
-    // Если loom заругается, уберем.
+    // РќРѕСЂРјР°Р»СЊРЅРѕ РґР»СЏ 1.12.2, С‡С‚РѕР±С‹ РјРёРєСЃРёРЅС‹ СЂР°Р±РѕС‚Р°Р»Рё Р±РµР· СЃСЋСЂРїСЂРёР·РѕРІ.
+    // Р•СЃР»Рё loom Р·Р°СЂСѓРіР°РµС‚СЃСЏ, СѓР±РµСЂРµРј.
 }
 
 tasks.withType(JavaCompile).configureEach {
